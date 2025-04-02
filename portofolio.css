@@ -1,13 +1,24 @@
-@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap");
 
 :root {
-  --primary-color: #785ab1;
-  --secondary-color: #b1679d;
+  --primary-color: #6c63ff;
+  --secondary-color: #ff6584;
+  --tertiary-color: #43cea2;
   --extra-light: #f3f4f6;
   --white: #ffffff;
-  --gradient-1: linear-gradient(to bottom right, #0163a5, #d887d7);
-  --gradient-2: linear-gradient(to bottom, var(--primary-color), var(--secondary-color));
+  --dark: #333333;
+  --gradient-1: linear-gradient(135deg, #43cea2 0%, #185a9d 100%);
+  --gradient-2: linear-gradient(135deg, #6c63ff 0%, #ff6584 100%);
+  --gradient-hover: linear-gradient(135deg, #ff6584 0%, #6c63ff 100%);
+  --shadow-sm: 0 4px 6px rgba(0, 0, 0, 0.1);
+  --shadow-md: 0 8px 15px rgba(0, 0, 0, 0.1);
+  --shadow-lg: 0 15px 30px rgba(0, 0, 0, 0.1);
+  --border-radius-sm: 8px;
+  --border-radius-md: 12px;
+  --border-radius-lg: 20px;
+  --border-radius-xl: 30px;
   --max-width: 1200px;
+  --transition: all 0.3s ease;
 }
 
 * {
@@ -16,61 +27,110 @@
   box-sizing: border-box;
 }
 
-/* Gaya lainnya */
-
 .section__container {
   max-width: var(--max-width);
   margin: auto;
-  padding: 5rem 1rem;
+  padding: 6rem 1.5rem;
 }
 
 .section__header {
-  margin-bottom: 1rem;
-  font-size: 2rem;
+  margin-bottom: 1.5rem;
+  font-size: 2.5rem;
   font-weight: 700;
   text-align: center;
+  position: relative;
+  display: inline-block;
+}
+
+.section__header::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: -10px;
+  transform: translateX(-50%);
+  width: 50px;
+  height: 3px;
+  background-image: var(--gradient-2);
+  border-radius: 5px;
 }
 
 .section__description {
-  max-width: 600px;
+  max-width: 650px;
   margin-inline: auto;
   color: var(--extra-light);
   text-align: center;
-  line-height: 1.75rem;
+  line-height: 1.8rem;
+  font-weight: 400;
+  font-size: 1.05rem;
+  margin-bottom: 2.5rem;
 }
 
 .btn {
-  padding: 0.75rem 1.5rem;
+  padding: 0.85rem 2rem;
   font-size: 1rem;
-  font-weight: 500;
+  font-weight: 600;
   color: var(--white);
   background-image: var(--gradient-2);
   outline: none;
   border: none;
-  border-radius: 5rem;
+  border-radius: var(--border-radius-xl);
   cursor: pointer;
-  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2);
+  box-shadow: var(--shadow-md);
+  transition: var(--transition);
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.btn::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: var(--gradient-hover);
+  z-index: -1;
+  opacity: 0;
+  transition: var(--transition);
+}
+
+.btn:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-lg);
+}
+
+.btn:hover::before {
+  opacity: 1;
 }
 
 img {
   width: 100%;
-  display: flex;
+  display: block;
+  object-fit: cover;
+  transition: var(--transition);
 }
 
 a {
   text-decoration: none;
+  transition: var(--transition);
 }
 
 .logo {
   display: inline-block;
-  padding: 10px 14px;
+  padding: 12px 16px;
   font-size: 1.5rem;
   font-weight: 700;
   color: var(--white);
   background-image: var(--gradient-2);
   border-radius: 100%;
-  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2);
-  
+  box-shadow: var(--shadow-md);
+  transition: var(--transition);
+}
+
+.logo:hover {
+  transform: rotate(5deg) scale(1.05);
+  box-shadow: var(--shadow-lg);
 }
 
 html,
@@ -79,9 +139,11 @@ body {
 }
 
 body {
-  font-family: "Montserrat", sans-serif;
+  font-family: "Poppins", "Montserrat", sans-serif;
   color: var(--white);
   background-image: var(--gradient-1);
+  background-attachment: fixed;
+  line-height: 1.6;
 }
 
 nav {
@@ -91,21 +153,25 @@ nav {
   width: 100%;
   max-width: var(--max-width);
   margin: auto;
-  z-index: 9;
+  z-index: 99;
+  backdrop-filter: blur(10px);
 }
 
 .nav__bar {
-  padding: 1rem;
+  padding: 1rem 1.5rem;
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 2rem;
   background-image: var(--gradient-1);
+  box-shadow: var(--shadow-md);
+  border-radius: 0 0 var(--border-radius-md) var(--border-radius-md);
 }
 
 .nav__logo {
-  padding: 9px 12px;
-  font-size: 1.2rem;
+  padding: 10px 14px;
+  font-size: 1.3rem;
+  letter-spacing: 1px;
 }
 
 .nav__bar a {
@@ -115,9 +181,14 @@ nav {
 }
 
 .nav__menu__btn {
-  font-size: 1.5rem;
+  font-size: 1.6rem;
   color: var(--white);
   cursor: pointer;
+  transition: var(--transition);
+}
+
+.nav__menu__btn:hover {
+  transform: scale(1.1);
 }
 
 .nav__links {
@@ -133,6 +204,8 @@ nav {
   transform: translateY(-100%);
   transition: 0.5s;
   z-index: -1;
+  border-radius: 0 0 var(--border-radius-md) var(--border-radius-md);
+  box-shadow: var(--shadow-md);
 }
 
 .nav__links.open {
@@ -141,11 +214,23 @@ nav {
 
 .nav__links a {
   color: var(--white);
-  transition: 0.3s;
+  transition: var(--transition);
+  position: relative;
 }
 
-.nav__links a:hover {
-  color: var(--white);
+.nav__links a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -5px;
+  width: 0;
+  height: 2px;
+  background-color: var(--white);
+  transition: var(--transition);
+}
+
+.nav__links a:hover::after {
+  width: 100%;
 }
 
 .btn__large {
@@ -153,9 +238,9 @@ nav {
 }
 
 .header__container {
-  padding-top: 8rem;
+  padding-top: 10rem;
   display: grid;
-  gap: 2rem;
+  gap: 3rem;
   isolation: isolate;
 }
 
@@ -164,44 +249,61 @@ nav {
 }
 
 .header__content h1 {
-  margin-bottom: 1rem;
-  font-size: 3rem;
+  margin-bottom: 1.5rem;
+  font-size: 3.5rem;
   text-align: center;
+  background-image: var(--gradient-2);
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  text-shadow: var(--shadow-sm);
 }
 
 .header__content .section__description {
-  margin-bottom: 2rem;
+  margin-bottom: 2.5rem;
 }
 
 .header__image {
   position: relative;
   isolation: isolate;
   z-index: -1;
-  /* Tambahkan margin kiri atau transform untuk menggeser sedikit ke kanan */
-  margin-left: 20px; /* Geser bingkai dan gambar 20px ke kanan */
+  margin-left: 25px;
+  animation: floatImage 4s ease-in-out infinite;
+}
+
+@keyframes floatImage {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
 }
 
 .header__image img {
   max-width: 450px;
   margin-inline: auto;
-  border-radius: 25rem;
-  /* Tambahkan margin kiri atau transform untuk menggeser sedikit ke kanan */
-  transform: translateX(20px); /* Geser gambar 20px ke kanan */
+  border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%;
+  box-shadow: var(--shadow-lg);
+  transform: translateX(20px);
+  border: 4px solid rgba(255, 255, 255, 0.2);
 }
 
 .header__image::after {
   position: absolute;
   content: "Reinhart JR";
   letter-spacing: 1.5rem;
-  opacity: 0.5;
+  opacity: 0.3;
   right: 1rem;
   top: 50%;
   transform: translate(50%, -50%) rotate(90deg);
+  font-size: 1.2rem;
+  font-weight: 700;
 }
 
 .about__container {
   display: grid;
-  gap: 2rem;
+  gap: 3rem;
 }
 
 .about__image {
@@ -212,7 +314,26 @@ nav {
 }
 
 .about__img {
-  border-radius: 100%;
+  border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+  box-shadow: var(--shadow-lg);
+  border: 4px solid rgba(255, 255, 255, 0.2);
+  transition: var(--transition);
+  animation: morphShape 8s ease-in-out infinite;
+}
+
+@keyframes morphShape {
+  0%, 100% {
+    border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+  }
+  25% {
+    border-radius: 58% 42% 75% 25% / 76% 46% 54% 24%;
+  }
+  50% {
+    border-radius: 50% 50% 33% 67% / 55% 27% 73% 45%;
+  }
+  75% {
+    border-radius: 33% 67% 58% 42% / 63% 68% 32% 37%;
+  }
 }
 
 .about__bg-1,
@@ -220,16 +341,27 @@ nav {
   position: absolute;
   max-width: 150px;
   z-index: -1;
+  opacity: 0.7;
+  animation: rotate 10s linear infinite;
+}
+
+@keyframes rotate {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }
 
 .about__bg-1 {
-  top: 0;
-  left: 0;
+  top: -20px;
+  left: -20px;
 }
 
 .about__bg-2 {
-  right: 0;
-  bottom: 0;
+  right: -20px;
+  bottom: -20px;
 }
 
 .about__content {
@@ -237,50 +369,89 @@ nav {
 }
 
 .about__content .section__description {
-  margin-bottom: 2rem;
+  margin-bottom: 2.5rem;
 }
 
 .project__grid {
-  margin-top: 2rem;
+  margin-top: 3rem;
   display: grid;
-  gap: 1rem;
+  gap: 1.5rem;
 }
 
 .project__card {
-  padding: 2rem 1rem;
+  padding: 2.5rem 1.5rem;
   text-align: center;
   background-image: var(--gradient-2);
-  border-radius: 1rem;
-  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2);
+  border-radius: var(--border-radius-md);
+  box-shadow: var(--shadow-md);
+  transition: var(--transition);
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.project__card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: var(--gradient-hover);
+  z-index: -1;
+  opacity: 0;
+  transition: var(--transition);
+}
+
+.project__card:hover {
+  transform: translateY(-10px);
+  box-shadow: var(--shadow-lg);
+}
+
+.project__card:hover::before {
+  opacity: 1;
 }
 
 .project__card span {
   display: inline-block;
-  margin-bottom: 1rem;
-  font-size: 2rem;
+  margin-bottom: 1.2rem;
+  font-size: 2.5rem;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 50%;
+  width: 70px;
+  height: 70px;
+  line-height: 70px;
+  text-align: center;
 }
 
 .project__card h4 {
-  margin-bottom: 1rem;
-  font-size: 1.2rem;
+  margin-bottom: 1.2rem;
+  font-size: 1.4rem;
   font-weight: 700;
 }
 
 .project__card p {
   color: var(--extra-light);
-  line-height: 2rem;
+  line-height: 1.8rem;
 }
 
 .portofolio__grid {
-  margin-top: 2rem;
+  margin-top: 3rem;
   display: grid;
-  gap: 1rem;
+  gap: 1.5rem;
 }
 
 .portofolio__card {
   overflow: hidden;
-  border-radius: 1rem;
-  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2);
+  border-radius: var(--border-radius-md);
+  box-shadow: var(--shadow-md);
+  position: relative;
+  transition: var(--transition);
+}
+
+.portofolio__card:hover {
+  transform: translateY(-10px);
+  box-shadow: var(--shadow-lg);
 }
 
 .portofolio__card img {
@@ -291,19 +462,41 @@ nav {
   transform: scale(1.1);
 }
 
+.portofolio__card::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.7), transparent);
+  opacity: 0;
+  transition: var(--transition);
+}
+
+.portofolio__card:hover::after {
+  opacity: 1;
+}
+
 .portofolio__banner {
-  margin-top: 2rem;
-  padding: 2rem;
+  margin-top: 3rem;
+  padding: 2.5rem;
   display: flex;
   justify-content: space-between;
   text-align: center;
   background-image: var(--gradient-2);
-  border-radius: 1rem;
-  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2);
+  border-radius: var(--border-radius-md);
+  box-shadow: var(--shadow-md);
+  transition: var(--transition);
+}
+
+.portofolio__banner:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-lg);
 }
 
 .portofolio__banner__card {
-  flex-basis: calc(33.33% - 1rem); /* Mengatur lebar masing-masing card */
+  flex-basis: calc(33.33% - 1rem);
 }
 
 .center {
@@ -316,17 +509,25 @@ nav {
 
 .portofolio__banner__card span {
   display: inline-block;
-  margin-bottom: 0.5rem;
-  font-size: 1.5rem;
+  margin-bottom: 0.8rem;
+  font-size: 2rem;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  line-height: 60px;
+  text-align: center;
 }
 
 .portofolio__banner__card h4 {
-  font-size: 1.2rem;
+  font-size: 1.4rem;
   font-weight: 600;
+  margin-bottom: 0.5rem;
 }
 
 .portofolio__banner__card p {
   font-weight: 500;
+  color: var(--extra-light);
 }
 
 .contact__container {
@@ -334,36 +535,53 @@ nav {
 }
 
 .contact__container .logo {
-  margin-bottom: 1rem;
+  margin-bottom: 1.5rem;
+  font-size: 2rem;
+  padding: 15px 20px;
 }
 
 .contact__socials {
-  margin-top: 2rem;
+  margin-top: 2.5rem;
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 1rem;
+  gap: 1.5rem;
   flex-wrap: wrap;
 }
 
-.contact__socials a img {
-  width: 40px; /* Ubah ukuran lebar */
-  height: 40px; /* Ubah ukuran tinggi */
-  border-radius: 60%;
+.contact__socials a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 60px;
+  height: 60px;
+  background-image: var(--gradient-2);
+  border-radius: 50%;
+  transition: var(--transition);
+  box-shadow: var(--shadow-md);
 }
 
-
+.contact__socials a img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  padding: 5px;
+}
 
 .contact__socials a:hover {
-  background: var(--secondary-color);
+  transform: translateY(-5px) rotate(10deg);
+  box-shadow: var(--shadow-lg);
+  background-image: var(--gradient-hover);
 }
 
 footer {
-  margin-top: 2rem;
-  padding: 1rem;
+  margin-top: 3rem;
+  padding: 1.5rem;
   text-align: center;
+  background-image: var(--gradient-2);
+  border-radius: var(--border-radius-md) var(--border-radius-md) 0 0;
+  box-shadow: var(--shadow-md);
 }
-
 
 @media (width > 576px) {
   .project__grid {
@@ -392,6 +610,7 @@ footer {
   .nav__bar {
     padding: 0;
     background-image: none;
+    box-shadow: none;
   }
 
   .nav__menu__btn {
@@ -405,6 +624,11 @@ footer {
     transform: none;
     flex-direction: row;
     background-image: none;
+    box-shadow: none;
+  }
+
+  .nav__links a {
+    position: relative;
   }
 
   .nav__links a:hover {
@@ -420,9 +644,10 @@ footer {
   }
 
   .header__container {
-    padding-top: 5rem;
+    padding-top: 7rem;
     grid-template-columns: repeat(4, 1fr);
     align-items: center;
+    gap: 2rem;
   }
 
   .header__image {
@@ -439,8 +664,8 @@ footer {
   }
 
   .header__content h1 {
-    font-size: 6rem;
-    line-height: 6rem;
+    font-size: 4.5rem;
+    line-height: 5rem;
     text-align: left;
   }
 
@@ -459,8 +684,13 @@ footer {
     text-align: left;
   }
 
+  .about__content .section__header::after {
+    left: 0;
+    transform: none;
+  }
+
   .project__grid {
-    grid-template-columns: repeat(2, 2fr);
+    grid-template-columns: repeat(3, 1fr);
   }
 
   .portofolio__container :is(.section__header, .section__description) {
@@ -468,11 +698,23 @@ footer {
     margin-inline-start: unset;
   }
 
+  .portofolio__container .section__header::after {
+    left: 0;
+    transform: none;
+  }
+
   .portofolio__grid {
-    grid-template-columns: repeat(2, 2fr);
+    grid-template-columns: repeat(3, 1fr);
   }
 
   .portofolio__banner {
-    grid-template-columns: repeat(2, 2fr);
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (width > 992px) {
+  .header__content h1 {
+    font-size: 5.5rem;
+    line-height: 6rem;
   }
 }
