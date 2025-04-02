@@ -114,7 +114,7 @@ nav {
   color: var(--white);
 }
 
-.nav__menu__btn {
+.nav_menu_btn {
   font-size: 1.5rem;
   color: var(--white);
   cursor: pointer;
@@ -169,7 +169,7 @@ nav {
   text-align: center;
 }
 
-.header__content .section__description {
+.header_content .section_description {
   margin-bottom: 2rem;
 }
 
@@ -236,7 +236,7 @@ nav {
   text-align: center;
 }
 
-.about__content .section__description {
+.about_content .section_description {
   margin-bottom: 2rem;
 }
 
@@ -302,7 +302,7 @@ nav {
   box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2);
 }
 
-.portofolio__banner__card {
+.portofolio_banner_card {
   flex-basis: calc(33.33% - 1rem); /* Mengatur lebar masing-masing card */
 }
 
@@ -314,18 +314,18 @@ nav {
   margin-left: auto;
 }
 
-.portofolio__banner__card span {
+.portofolio_banner_card span {
   display: inline-block;
   margin-bottom: 0.5rem;
   font-size: 1.5rem;
 }
 
-.portofolio__banner__card h4 {
+.portofolio_banner_card h4 {
   font-size: 1.2rem;
   font-weight: 600;
 }
 
-.portofolio__banner__card p {
+.portofolio_banner_card p {
   font-weight: 500;
 }
 
@@ -394,7 +394,7 @@ footer {
     background-image: none;
   }
 
-  .nav__menu__btn {
+  .nav_menu_btn {
     display: none;
   }
 
@@ -444,7 +444,7 @@ footer {
     text-align: left;
   }
 
-  .header__content .section__description {
+  .header_content .section_description {
     text-align: left;
     margin-inline-start: unset;
   }
@@ -455,7 +455,7 @@ footer {
   }
 
   .about__content,
-  .about__content :is(.section__header, .section__description) {
+  .about_content :is(.sectionheader, .section_description) {
     text-align: left;
   }
 
@@ -463,7 +463,7 @@ footer {
     grid-template-columns: repeat(2, 2fr);
   }
 
-  .portofolio__container :is(.section__header, .section__description) {
+  .portofolio_container :is(.sectionheader, .section_description) {
     text-align: left;
     margin-inline-start: unset;
   }
